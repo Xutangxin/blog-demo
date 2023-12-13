@@ -6,9 +6,6 @@ import useFetch from './useFetch';
 // npx json-server --watch data/db.json --port 8000
 
 const Home = () => {
-    const handleClick = (val) => {
-        console.log('data', val.title)
-    }
 
     const { data: blogs, isLoading, error } = useFetch('http://localhost:8000/blogs')
 
@@ -16,7 +13,7 @@ const Home = () => {
         <div className="home">
             {error && <h2>{error}</h2>}
             {isLoading && <h2>Loading...</h2>}
-            {!!blogs.length && <BlogList blogs={blogs} title="All Blogs" handleClick={handleClick} />}
+            {blogs && <BlogList blogs={blogs} title="All Blogs" />}
 
         </div>
     );
